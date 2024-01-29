@@ -17,32 +17,24 @@
 
             </div>
             <ul class="conversations">
-                <li class="grouping">Today</li>
-                <li class="active">
-                    <button class="conversation-button"><i class="fa fa-message fa-regular"></i> This is a conversation title</button>
+                <li class="grouping" data-conversation-id="today">오늘</li>
+                <li class="active" data-conversation-id="1">
+                    <button class="conversation-button"><i class="fa fa-message fa-regular"></i> hello1</button>
                     <div class="fade"></div>
                     <div class="edit-buttons">
                         <button><i class="fa fa-edit"></i></button>
                         <button><i class="fa fa-trash"></i></button>
                     </div>
                 </li>
-                <li class="grouping">Yesterday</li>
-                <li>
-                    <button class="conversation-button"><i class="fa fa-message fa-regular"></i> This is a conversation title</button>
+                <li class="grouping" data-conversation-id="yesterday">어제</li>
+                <li class="active" data-conversation-id="2">
+                    <button class="conversation-button"><i class="fa fa-message fa-regular"></i> hello2</button>
                     <div class="fade"></div>
                     <div class="edit-buttons">
                         <button><i class="fa fa-edit"></i></button>
                         <button><i class="fa fa-trash"></i></button>
                     </div>
-                </li>
-                <li>
-                    <button class="conversation-button"><i class="fa fa-message fa-regular"></i> This is a very super long conversation title that doesn't fit</button>
-                    <div class="fade"></div>
-                    <div class="edit-buttons">
-                        <button><i class="fa fa-edit"></i></button>
-                        <button><i class="fa fa-trash"></i></button>
-                    </div>
-                </li>
+                </li>            
             </ul>
         </div>
         <div class="user-menu">
@@ -69,38 +61,7 @@
             <div class="model-name">
                 학습 모드
             </div>
-            <div class="user message">
-                <div class="identity">
-                    <i class="user-icon">u</i>
-                </div>
-                <div class="content">
-                    <p>Hello, how are you?</p>
-                </div>
-            </div>
-            <div class="assistant message">
-                <div class="identity">
-                    <i class="gpt user-icon">G</i>
-                </div>
-                <div class="content">
-                    <p>I'm doing well, thank you!</p>
-                </div>
-            </div>
-            <div class="user message">
-                <div class="identity">
-                    <i class="user-icon">u</i>
-                </div>
-                <div class="content">
-                    <p>Hello, how are you?</p>
-                </div>
-            </div>
-            <div class="assistant message">
-                <div class="identity">
-                    <i class="gpt user-icon">G</i>
-                </div>
-                <div class="content">
-                    <p>I'm doing well, thank you!</p>
-                </div>
-            </div>
+            <div class="messages-container"></div>
         </div>
 
         <div id="message-form">
@@ -110,6 +71,8 @@
             </div>
         </div>
     </main>
-    <script src="script.js"></script>
+    <script src="script-sidebar.js"></script>
+    <script src="script-chat.js"></script>
+    <script src="script-test.js"></script>
 </body>
 </html>
