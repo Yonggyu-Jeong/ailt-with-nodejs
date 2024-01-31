@@ -31,10 +31,18 @@
                     <button class="conversation-button"><i class="fa fa-message fa-regular"></i> hello2</button>
                     <div class="fade"></div>
                     <div class="edit-buttons">
-                        <button><i class="fa fa-edit"></i></button>
-                        <button><i class="fa fa-trash"></i></button>
+                        <button class="edit"><i class="fa fa-edit"></i></button>
+                        <button class="delete"><i class="fa fa-trash"></i></button>
                     </div>
-                </li>            
+                </li>        
+                <li class="active" data-conversation-id="3">
+                    <button class="conversation-button"><i class="fa fa-message fa-regular"></i> hello3</button>
+                    <div class="fade"></div>
+                    <div class="edit-buttons">
+                        <button class="edit"><i class="fa fa-edit"></i></button>
+                        <button class="delete"><i class="fa fa-trash"></i></button>
+                    </div>
+                </li>      
             </ul>
         </div>
         <div class="user-menu">
@@ -68,8 +76,11 @@
             <div class="message-wrapper">
                 <textarea id="message" rows="1" placeholder="메세지를 입력하세요"></textarea>
                 <button class="send-button"><i class="fa fa-paper-plane"></i></button>
+                <button class="record-button" onclick="toggleRecording()"><i class="fa fa-paper-plane"></i></button>
             </div>
         </div>
+
+
     </main>
     <script src="script-sidebar.js"></script>
     <script src="script-chat.js"></script>

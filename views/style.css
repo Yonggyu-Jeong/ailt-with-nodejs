@@ -15,7 +15,7 @@ html, body {
     --color-button-hover-fade: #24262900;
     --color-user-icon: #8e0000;
     --color-groupings: #9ca6b5;
-    --color-gpt-icon: #000000;
+    --color-assistant-icon: #000000;
     --color-black: #1e1e1f;
     --color-user-menu-hover: #383b42;
     --color-text: #f5f9ff;
@@ -31,6 +31,8 @@ html, body {
     --color-user-menu-border: #34373a;
     --color-user-menu-selected-border: #4a5562;
     --color-border2: #292d32;
+    --color-message: #007AFF;
+    --color-record: #5fc319;
     --color-user-message-border: #2f353d;
 }
 
@@ -487,7 +489,7 @@ p.secondary {
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    background: var(--color-gpt3);
+    background: var(--color-message);
     border-radius: 5px;
     display: inline-block;
     font-size: 1em;
@@ -497,10 +499,31 @@ p.secondary {
     margin-top: -2px;
 }
 
+.record-button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-record);
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1em;
+    padding: 7px 9px 7px 7px;
+    color: var(--color-white);
+    border: none;
+    margin-top: -2px;
+    margin-right: 50px;
+}
+
 button.send-button:hover {
     border: none;
-    background: var(--color-gpt3);
+    background: var(--color-message);
     color: var(--color-white);
+}
+
+.record-button:hover {
+    background-color: #ff4646;
+    transition: background-color 0.3s ease; 
 }
 
 p {
