@@ -3,13 +3,17 @@ const sendButton = document.querySelector(".send-button");
 const messageForm = document.getElementById("message-form");
 const conversationView = document.querySelector(".conversation-view .messages-container");
 
-messageBox.addEventListener("keyup", function() {
+messageBox.addEventListener("keyup", function(event) {
     messageBox.style.height = "auto";
     let height = messageBox.scrollHeight + 2;
     if (height > 200) {
         height = 200;
     }
     messageBox.style.height = height + "px";
+        if (event.key === "Enter") {
+        event.preventDefault();
+        sendButton.click();
+    }
 });
 
 function showView(viewSelector) {
@@ -53,6 +57,36 @@ messageForm.addEventListener("submit", function (event) {
     sendButton.click();
 });
 
+let isRecording = false;
+
+function toggleRecording() {
+    const recordStopButton = document.getElementById('record-stop-button');
+    const sendButton = document.getElementById('send-button');
+    const messageTextArea = document.getElementById('message');
+
+    if (isRecording) {
+        // 녹음 중지
+        recordStopButton.style.backgroundColor = 'var(--color-gpt3)';
+        recordStopButton.textContent = '음성 녹음 시작';
+        sendButton.disabled = false;
+        messageTextArea.disabled = false;
+
+        // 여기에 녹음 중지 및 메시지 보내기 로직을 추가할 수 있습니다.
+        alert("음성 녹음이 종료되었습니다. 메시지를 보냅니다.");
+    } else {
+        // 녹음 시작
+        recordStopButton.style.backgroundColor = '#ff4646';
+        recordStopButton.textContent = '음성 녹음 중지';
+        sendButton.disabled = true;
+        messageTextArea.disabled = true;
+
+        // 여기에 녹음 시작 로직을 추가할 수 있습니다.
+        alert("음성 녹음이 시작되었습니다.");
+    }
+
+    isRecording = !isRecording;
+}
+
 // conversations 버튼 클릭 이벤트 추가
 document.querySelectorAll(".conversations li").forEach(conversationItem => {
     conversationItem.addEventListener("click", function() {
@@ -64,7 +98,7 @@ document.querySelectorAll(".conversations li").forEach(conversationItem => {
     });
 });
 
-// 대화 내용 갱신 함수
+
 function updateConversationView(data) {
     const modelNameElement = document.querySelector(".conversation-view .model-name");
     const messagesContainer = document.querySelector(".conversation-view .messages-container");
@@ -85,46 +119,15 @@ function updateConversationView(data) {
 
         const contentElement = document.createElement("div");
         contentElement.classList.add("content");
-        contentElement.innerHTML = `<p>${message.content}</p>`;
-        messageElement.appendChild(contentElement);
 
+        // 메시지 구분에 따라 아이콘 및 클래스 변경
+        if (message.sender === "user") {
+            contentElement.innerHTML = `<p class="user-message">${message.content}</p>`;
+        } else if (message.sender === "assistant") {
+            contentElement.innerHTML = `<p class="assistant-message">${message.content}</p>`;
+        }
+
+        messageElement.appendChild(contentElement);
         messagesContainer.appendChild(messageElement);
     });
-}
-
-// 저장된 데이터를 가져오는 함수 (예시)
-function getConversationData(conversationId) {
-    // 예시 데이터
-    const exampleData = {
-        today: {
-            modelName: "Default (GPT-3.5)",
-            messages: [
-                { sender: "user", content: "안녕하세요?" },
-                { sender: "assistant", content: "안녕하세요! 어떻게 도와드릴까요?" },
-            ],
-        },
-        yesterday: {
-            modelName: "Custom Model 2",
-            messages: [
-                { sender: "user", content: "대화 내용 2-1" },
-                { sender: "assistant", content: "대화 내용 2-2" },
-            ],
-        },
-        1: {
-            modelName: "Custom Model 1",
-            messages: [
-                { sender: "user", content: "대화 내용 1-1" },
-                { sender: "assistant", content: "대화 내용 1-2" },
-            ],
-        },
-        2: {
-            modelName: "Custom Model 3",
-            messages: [
-                { sender: "user", content: "대화 내용 3-1" },
-                { sender: "assistant", content: "대화 내용 3-2" },
-            ],
-        },
-    };
-
-    return exampleData[conversationId] || { modelName: "", messages: [] };
 }
